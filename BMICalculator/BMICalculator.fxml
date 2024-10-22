@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:id="grid" xmlns:fx="http://javafx.com/fxml" fx:controller="BMICalculatorApp.BMICalculatorController" hgap="10" vgap="8" alignment="CENTER">
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+  </padding>
+
+  <!-- Weight Label and TextField -->
+  <Label text="Weight (kg):" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+  <TextField fx:id="weightField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+  <!-- Height Label and TextField -->
+  <Label text="Height (m):" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+  <TextField fx:id="heightField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+  <!-- BMI Result -->
+  <Label text="BMI:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+  <Label fx:id="bmiResultLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+  <!-- Status Result -->
+  <Label text="Status:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+  <Label fx:id="statusResultLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+  <!-- Calculate Button -->
+  <Button text="Calculate" fx:id="calculateButton" onAction="#calculateBMI" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+</GridPane>
