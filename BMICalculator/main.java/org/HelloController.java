@@ -1,9 +1,15 @@
+package BMICalculatorApp;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 
 public class BMICalculatorController {
 
+    public GridPane grid;
+    public Button calculateButton;
     @FXML
     private TextField weightField;
 
@@ -19,7 +25,6 @@ public class BMICalculatorController {
     @FXML
     private void calculateBMI() {
         try {
-            // Get input values
             double weight = Double.parseDouble(weightField.getText());
             double height = Double.parseDouble(heightField.getText());
 
@@ -38,9 +43,6 @@ public class BMICalculatorController {
         }
     }
 
-    /**
-     * Method to determine BMI status based on NIH guidelines.
-     */
     private String getBMIStatus(double bmi) {
         if (bmi < 18.5) {
             return "Underweight";
@@ -53,4 +55,3 @@ public class BMICalculatorController {
         }
     }
 }
-
