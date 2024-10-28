@@ -1,57 +1,100 @@
-package BMICalculatorApp;
+package org.example.democalc;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class BMICalculatorController {
+import java.awt.event.MouseEvent;
 
-    public GridPane grid;
-    public Button calculateButton;
-    @FXML
-    private TextField weightField;
+public class HelloController {
 
     @FXML
-    private TextField heightField;
+    private TextField bmiOutput;
 
     @FXML
-    private Label bmiResultLabel;
+    private Button calculateButton;
 
     @FXML
-    private Label statusResultLabel;
+    private Button clear;
 
     @FXML
-    private void calculateBMI() {
-        try {
-            double weight = Double.parseDouble(weightField.getText());
-            double height = Double.parseDouble(heightField.getText());
+    private GridPane grid;
 
-            // Calculate BMI
-            double bmi = weight / (height * height);
+    @FXML
+    private TextField heightinput;
 
-            // Set the BMI result
-            bmiResultLabel.setText(String.format("%.2f", bmi));
+    @FXML
+    private TextField statusOutput;
 
-            // Determine the BMI status
-            String status = getBMIStatus(bmi);
-            statusResultLabel.setText(status);
-        } catch (NumberFormatException ex) {
-            bmiResultLabel.setText("Invalid input");
-            statusResultLabel.setText("");
+    @FXML
+    private RadioButton unitSwitcher;
+
+    @FXML
+    private TextField weightinput;
+
+    @FXML
+    void calculate(ActionEvent event){
+        try
+        {
+            Double weightValue = Double.parseDouble(weightinput.getText());
+            Double heightValue = Double.parseDouble(heightinput.getText());
+            Double bmiValue;
+            {
+                if (!unitSwitcher.isSelected()) {
+                    bmiValue = weightValue / (heightValue * heightValue);
+                }
+                else {
+                    bmiValue = 703*weightValue / (heightValue*heightValue);
+
+                }
+            }
+
+            weightinput.clear();
+            heightinput.clear();
+            setResult(bmiValue);
+
+        }
+        catch (Exception e)
+        {
+
         }
     }
-
-    private String getBMIStatus(double bmi) {
-        if (bmi < 18.5) {
-            return "Underweight";
-        } else if (bmi >= 18.5 && bmi <= 24.9) {
-            return "Normal weight";
-        } else if (bmi >= 25 && bmi <= 29.9) {
-            return "Overweight";
-        } else {
-            return "Obesity";
+    void setResult(double bmiValue)
+    {
+        bmiOutput.setText(String.valueOf(bmiValue));
+        if(bmiValue <= 18.5)
+        {
+            statusOutput.setText("Underweight");
+        }
+        else if(18.6<= bmiValue && bmiValue <= 24.9)
+        {
+            statusOutput.setText("Normal");
+        }
+        else if(25 <= bmiValue && bmiValue <= 29.9)
+        {
+            statusOutput.setText("Overweight");
+        }
+        else {
+            statusOutput.setText("Obese");
         }
     }
+    @FXML
+    void clear(MouseEvent event)
+    {
+        bmiOutput.clear();
+        heightinput.clear();
+        weightinput.clear();
+        statusOutput.clear();
+    }
+    public void clear(javafx.scene.input.MouseEvent mouseEvent) {
+        bmiOutput.clear();
+        heightinput.clear();
+        weightinput.clear();
+        statusOutput.clear();
+    }
+
 }
+
