@@ -32,3 +32,4 @@ Technologies Used:
 Java: Core language for logic and handling events.
 JavaFX: Used to build the graphical user interface (GUI).
 FXML: (If used) For designing the UI layout and binding to the controller methods.
+
